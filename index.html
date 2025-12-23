@@ -1,67 +1,111 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя книга</title>
-    <style>
-        /* Стили для страницы и книги */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: #f0f0f0;
-            font-family: sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Моя книга с текстом</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f0f0f0;
+        font-family: sans-serif;
+    }
 
-        #book {
-            width: 400px;   /* ширина книги */
-            height: 600px;  /* высота книги */
-        }
+    #book {
+        width: 400px;
+        height: 600px;
+    }
 
-        /* Стили страниц (если используем HTML вместо изображений) */
-        .my-page {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            background: white;
-        }
-    </style>
+    .page-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .caption {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .page-text {
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        right: 10px;
+        bottom: 60px;
+        overflow-y: auto;
+        padding: 10px;
+        color: #333;
+        font-size: 16px;
+        background: rgba(255,255,255,0.6);
+    }
+</style>
 </head>
 <body>
 
 <div id="book"></div>
 
-<!-- Подключаем библиотеку PageFlip с CDN -->
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
-
 <script>
-    // Создаем объект книги
-    const pageFlip = new St.PageFlip(document.getElementById('book'), {
-        width: 400,
-        height: 600,
-        drawShadow: true,
-        flippingTime: 800,
-        useMouseEvents: true
-    });
+const bookContainer = document.getElementById('book');
 
-    // Загружаем страницы из изображений
-    pageFlip.loadFromImages([
-        'images/page1.jpg',
-        'images/page2.jpg',
-        'images/page3.jpg',
-        'images/page4.jpg'
-    ]);
+const pageFlip = new St.PageFlip(bookContainer, {
+    width: 400,
+    height: 600,
+    showCover: true,
+    drawShadow: true,
+    flippingTime: 800,
+    useMouseEvents: true
+});
 
-    // Пример события: вывод номера текущей страницы при перелистывании
-    pageFlip.on('flip', (e) => {
-        console.log("Текущая страница:", e.data);
-    });
+// Страницы с картинками и текстом
+const pages = [
+    { img: 'images/uriy_cezar.png', text: '', hard: true }, // обложка
+    { img: 'images/page1.jpg', text: 'Текст первой страницы книги.' },
+    { img: 'images/page2.jpg', text: 'Текст второй страницы книги.' },
+    { img: 'images/page3.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/page4.jpg', text: 'Последняя страница', hard: true }
+];
+
+const pageElements = pages.map(page => {
+    const div = document.createElement('div');
+    div.className = 'page-content';
+    if(page.hard) div.setAttribute('data-density','hard');
+
+    const img = document.createElement('img');
+    img.src = page.img;
+    div.appendChild(img);
+
+    if(page.text) {
+        const caption = document.createElement('div');
+        caption.className = 'page-text';
+        caption.textContent = page.text;
+        div.appendChild(caption);
+    }
+
+    return div;
+});
+
+pageFlip.loadFromHTML(pageElements);
+
+pageFlip.on('flip', e => console.log('Текущая страница:', e.data));
 </script>
 
 </body>

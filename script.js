@@ -24,5 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Загружаем HTML страницы
-    pageFlip.loadFromHtml(pageElements);
+    pageFlip.loadFromHTML(pageElements);
 });
