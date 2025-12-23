@@ -1,45 +1,68 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Книга с перелистыванием</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя книга</title>
+    <style>
+        /* Стили для страницы и книги */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+            font-family: sans-serif;
+        }
+
+        #book {
+            width: 400px;   /* ширина книги */
+            height: 600px;  /* высота книги */
+        }
+
+        /* Стили страниц (если используем HTML вместо изображений) */
+        .my-page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            background: white;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- Кнопки управления для Firefox -->
-  <div id="control">
-    <a id="pressLeft" href="#">Влево</a>
-    <a id="pressRight" href="#">Вправо</a>
-  </div>
+<div id="book"></div>
 
-  <!-- Книга -->
-  <div id="book" class="book">
-    <div class="page_project page-first page-open">
-      <div class="page_side_left"><div class="working_area"><p>Страница 1</p></div></div>
-      <div class="page_side_right"><div class="working_area"><p>Страница 2</p></div></div>
-    </div>
+<!-- Подключаем библиотеку PageFlip с CDN -->
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
-    <div class="page_project page-open">
-      <div class="page_side_left"><div class="working_area"><p>Страница 3</p></div></div>
-      <div class="page_side_right"><div class="working_area"><p>Страница 4</p></div></div>
-    </div>
+<script>
+    // Создаем объект книги
+    const pageFlip = new St.PageFlip(document.getElementById('book'), {
+        width: 400,
+        height: 600,
+        drawShadow: true,
+        flippingTime: 800,
+        useMouseEvents: true
+    });
 
-    <div class="page_project page-last page-open">
-      <div class="page_side_left"><div class="working_area"><p>Страница 5</p></div></div>
-      <div class="page_side_right"><div class="working_area"><p>Страница 6</p></div></div>
-    </div>
-  </div>
+    // Загружаем страницы из изображений
+    pageFlip.loadFromImages([
+        'images/page1.jpg',
+        'images/page2.jpg',
+        'images/page3.jpg',
+        'images/page4.jpg'
+    ]);
 
-  <!-- Кнопки навигации -->
-  <div class="buttons">
-    <button id="prev">Назад</button>
-    <button id="next">Вперед</button>
-  </div>
-</div>
+    // Пример события: вывод номера текущей страницы при перелистывании
+    pageFlip.on('flip', (e) => {
+        console.log("Текущая страница:", e.data);
+    });
+</script>
 
-<script type="module" src="main.js"></script>
 </body>
 </html>
