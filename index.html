@@ -69,8 +69,8 @@
 const bookContainer = document.getElementById('book');
 
 const pageFlip = new St.PageFlip(bookContainer, {
-    width: 500,
-    height: 750,
+    width: 390,
+    height: 640,
     showCover: true,
     drawShadow: true,
     flippingTime: 800,
@@ -79,15 +79,16 @@ const pageFlip = new St.PageFlip(bookContainer, {
 
 // Страницы с картинками и текстом
 const pages = [
-    { img: 'images/header.jpg', text: '', hard: true }, // обложка
-    { img: 'images/history.jpg', text: 'Текст первой страницы книги.' },
+    { img: 'images/0page.jpg', text: '', hard: true }, // обложка
+    { img: 'images/1page.jpg', text: 'Текст первой страницы книги.' },
     { img: 'images/benefit.jpg', text: 'Текст второй страницы книги.' },
     { img: 'images/menu1.jpg', text: 'Текст третьей страницы книги.' },
     { img: 'images/menu2.jpg', text: 'Текст третьей страницы книги.' },
     { img: 'images/bitovoe.jpg', text: 'Текст третьей страницы книги.' },
     { img: 'images/cosmo.jpg', text: 'Текст третьей страницы книги.' },
     { img: 'images/medecina.jpg', text: 'Текст третьей страницы книги.' },
-    { img: 'images/otvar.jpg', text: 'Последняя страница', hard: true }
+    { img: 'images/otvar.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/end.jpg', text: 'Последняя страница', hard: true }
 ];
 
 const pageElements = pages.map(page => {
