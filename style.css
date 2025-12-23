@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container { text-align: center; }
+
+.book {
+  width: 800px; /* 2 страницы по 400px */
+  height: 600px;
+  position: relative;
+  margin: 20px auto;
+}
+
+.page_project {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.page_side_left,
+.page_side_right {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border: 1px solid #ccc;
+  background: white;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.page_side_left { border-right: 1px solid #999; }
+.page_side_right { border-left: 1px solid #999; }
+
+.working_area { padding: 20px; }
+
+.buttons { margin-top: 10px; }
+
+.buttons button,
+#control a {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

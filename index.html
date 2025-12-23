@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книга с перелистыванием</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <!-- Кнопки управления для Firefox -->
+  <div id="control">
+    <a id="pressLeft" href="#">Влево</a>
+    <a id="pressRight" href="#">Вправо</a>
+  </div>
+
+  <!-- Книга -->
+  <div id="book" class="book">
+    <div class="page_project page-first page-open">
+      <div class="page_side_left"><div class="working_area"><p>Страница 1</p></div></div>
+      <div class="page_side_right"><div class="working_area"><p>Страница 2</p></div></div>
+    </div>
+
+    <div class="page_project page-open">
+      <div class="page_side_left"><div class="working_area"><p>Страница 3</p></div></div>
+      <div class="page_side_right"><div class="working_area"><p>Страница 4</p></div></div>
+    </div>
+
+    <div class="page_project page-last page-open">
+      <div class="page_side_left"><div class="working_area"><p>Страница 5</p></div></div>
+      <div class="page_side_right"><div class="working_area"><p>Страница 6</p></div></div>
+    </div>
+  </div>
+
+  <!-- Кнопки навигации -->
+  <div class="buttons">
+    <button id="prev">Назад</button>
+    <button id="next">Вперед</button>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
