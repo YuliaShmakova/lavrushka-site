@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Моя книга с текстом</title>
 <style>
+
+
     body {
         display: flex;
         justify-content: center;
@@ -67,8 +69,8 @@
 const bookContainer = document.getElementById('book');
 
 const pageFlip = new St.PageFlip(bookContainer, {
-    width: 400,
-    height: 600,
+    width: 600,
+    height: 700,
     showCover: true,
     drawShadow: true,
     flippingTime: 800,
@@ -77,11 +79,15 @@ const pageFlip = new St.PageFlip(bookContainer, {
 
 // Страницы с картинками и текстом
 const pages = [
-    { img: 'images/uriy_cezar.png', text: '', hard: true }, // обложка
-    { img: 'images/page1.jpg', text: 'Текст первой страницы книги.' },
-    { img: 'images/page2.jpg', text: 'Текст второй страницы книги.' },
-    { img: 'images/page3.jpg', text: 'Текст третьей страницы книги.' },
-    { img: 'images/page4.jpg', text: 'Последняя страница', hard: true }
+    { img: 'images/header.jpg', text: '', hard: true }, // обложка
+    { img: 'images/history.jpg', text: 'Текст первой страницы книги.' },
+    { img: 'images/benefit.jpg', text: 'Текст второй страницы книги.' },
+    { img: 'images/menu1.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/menu2.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/bitovoe.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/cosmo.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/medecina.jpg', text: 'Текст третьей страницы книги.' },
+    { img: 'images/otvar.jpg', text: 'Последняя страница', hard: true }
 ];
 
 const pageElements = pages.map(page => {
@@ -93,12 +99,12 @@ const pageElements = pages.map(page => {
     img.src = page.img;
     div.appendChild(img);
 
-    if(page.text) {
-        const caption = document.createElement('div');
-        caption.className = 'page-text';
-        caption.textContent = page.text;
-        div.appendChild(caption);
-    }
+    // if(page.text) {
+    //     const caption = document.createElement('div');
+    //     caption.className = 'page-text';
+    //     caption.textContent = page.text;
+    //     div.appendChild(caption);
+    // }
 
     return div;
 });
